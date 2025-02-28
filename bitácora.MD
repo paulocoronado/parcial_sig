@@ -31,3 +31,7 @@ Mostrar el polígono del barrio
 ### Posible solución
 
 1. Buscar el polígono en los sitios de datos abiertos de Bogotá.
+
+## Problema 3
+
+Colocar tres botones en mi página web y asociarles los manejadores de eventos
