@@ -104,33 +104,42 @@ btnDistance.addEventListener("click", async () => {
             });
         });
 
-        // Generate PDF
-        const { jsPDF } = window.jspdf;
-        const doc = new jsPDF();
-
-        // Ensure autoTable is available
-        if (typeof doc.autoTable !== "function") {
-            console.error("autoTable is not loaded properly.");
-            return;
-        }
-
-        // Add Title
-        doc.setFontSize(16);
-        doc.text("Tree Distance Report", 10, 10);
-        doc.setFontSize(12);
-        doc.text(`Number of Trees: ${trees.length}`, 10, 20);
-
-        // Add Table
-        doc.autoTable({
-            head: [["From Tree", "To Tree", "Coordinates", "Distance (km)"]],
-            body: distances,
-            startY: 30
-        });
-
-        // Save PDF
-        doc.save("tree_distances.pdf");
+        // Call function to generate PDF
+        generatePDF(distances, trees.length);
 
     } catch (error) {
         console.error("Error loading GeoJSON:", error);
     }
 });
+
+/**
+* Generates a PDF report with tree distance data.
+* @param {Array} distances - Array of tree-to-tree distances.
+* @param {Number} totalTrees - Total number of trees in the dataset.
+*/
+function generatePDF(distances, totalTrees) {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    // Ensure autoTable is available
+    if (typeof doc.autoTable !== "function") {
+        console.error("autoTable is not loaded properly.");
+        return;
+    }
+
+    // Add Title
+    doc.setFontSize(16);
+    doc.text("Reporte de Distancias entre árboles", 10, 10);
+    doc.setFontSize(12);
+    doc.text(`Total de árboles: ${totalTrees}`, 10, 20);
+
+    // Add Table
+    doc.autoTable({
+        head: [["Desde el árbol", "Hasta el árbol", "Coordenades", "Distancia (km)"]],
+        body: distances,
+        startY: 30
+    });
+
+    // Save PDF
+    doc.save("tree_distances.pdf");
+}
