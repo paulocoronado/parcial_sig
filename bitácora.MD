@@ -25,4 +25,9 @@ Mostrar una página con un mapa centrado en mi barrio.
 1. Crear tres archivos. Uno para escribir la estructura de la página (index.html), otro para definir los estilos de los elementos de la página (style.css) y un tercero (program.js) para escribir las funciones que automatizan la interfaz gráfica de usuario (GUI).
 
 ## Problema 2
-   
+
+Mostrar el polígono del barrio
+
+### Posible solución
+
+1. Buscar el polígono en los sitios de datos abiertos de Bogotá.
